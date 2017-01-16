@@ -5,13 +5,16 @@ class TestLogin extends TestCase
 {
 
     public function testLogin1() {
-        $this->driver->get("http://adiphy.com/auth/signin/");
+        $host = "";
+        $username="";
+        $password ="";
+        $this->driver->get($host."/auth/signin/");
         $this->driver->manage()->window()->maximize();
         $this->waitForLoadComplete();
-        $this->driver->findElement(\Facebook\WebDriver\WebDriverBy::id('username'))->sendKeys('hahuyson@gmail.com');
-        $this->driver->findElement(\Facebook\WebDriver\WebDriverBy::id('password'))->sendKeys('sonhh!@#123');
+        $this->driver->findElement(\Facebook\WebDriver\WebDriverBy::id('username'))->sendKeys($username);
+        $this->driver->findElement(\Facebook\WebDriver\WebDriverBy::id('password'))->sendKeys($password);
         $this->driver->findElement(\Facebook\WebDriver\WebDriverBy::className('btn-login-submit'))->click();
-        $this->driver->navigate()->to("http://adiphy.com");
+        $this->driver->navigate()->to($host);
         $this->waitForLoadComplete();
         $i = 1;
 //        while ($i<=100){
@@ -23,7 +26,6 @@ class TestLogin extends TestCase
         $this->driver->executeScript('$("div.m-footer div.item-alias").show()');
         $this->driver->executeScript('$("div.m-footer div.item-site").show()');
         $listElms = $this->driver->findElements(\Facebook\WebDriver\WebDriverBy::cssSelector("div.m-footer"));
-        $host = "http://adiphy.com/";
         $auth_code = "0d640060cc25b3be2e220b6e47ab526c80b12cd6";
         if($listElms) {
             foreach ($listElms as $k => $element) {
@@ -47,10 +49,10 @@ class TestLogin extends TestCase
 
     }
     /**
-     * ©¢?i ©Â?n khi n«¢o page load th«¢nh c«Ông
+     * ÂÂ©Â¢?i ÂÂ©Ã‚?n khi nÂÂ«Â¢o page load thÂÂ«Â¢nh cÂÂ«Ã”ng
      *
      * @param number $timeout_in_second
-     *            th?i gian t«¿nh b?ng ©Â?n v? ph«ât
+     *            th?i gian tÂÂ«Â¿nh b?ng ÂÂ©Ã‚?n v? phÂÂ«Ã¢t
      * @return void
      */
     public function waitForLoadComplete($timeout_in_second = 30) {
@@ -59,7 +61,7 @@ class TestLogin extends TestCase
         });
     }
     /**
-     * T?o m?t tab m?i tr«´n browser
+     * T?o m?t tab m?i trÂÂ«Â´n browser
      *
      * @param
      *
@@ -73,7 +75,7 @@ class TestLogin extends TestCase
     }
 
     /**
-     * ©¢«Ñng m?t tab tr«´n browser
+     * ÂÂ©Â¢ÂÂ«Ã‘ng m?t tab trÂÂ«Â´n browser
      *
      * @param
      *
